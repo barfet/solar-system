@@ -1,0 +1,16 @@
+version: '2'
+
+services:  
+  planets:
+    build:
+      context: ./services/planets/.
+    image: planets
+    container_name: planets
+    networks:
+      - dev
+    ports:
+      - "3000:3000"
+
+networks:  
+  dev:
+    driver: bridge
