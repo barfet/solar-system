@@ -1,15 +1,39 @@
 version: '2'
 
-services:  
+services:
+
+  nginx:
+    image: jwilder/nginx-proxy:0.6.0
+    container_name: northstar-nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    ports:
+      - "8080:80"
+    environment:
+      - DEFAULT_HOST=planets.borysenok.com
+    networks:
+      - dev
+
   planets:
     build:
       context: ./services/planets/.
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
     image: planets
     container_name: planets
+    expose:
+      - "3000"
+    environment:
+      - VIRTUAL_HOST=planets.borysenok.com
+      - VIRTUAL_PORT=3000
+      - SLS_DEBUG=true
+      - http_proxy
+      - https_proxy
+      - no_proxy
     networks:
       - dev
-    ports:
-      - "3000:3000"
 
 networks:  
   dev:
