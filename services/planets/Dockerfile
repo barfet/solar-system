@@ -1,11 +1,8 @@
-FROM microsoft/dotnet:2.0-sdk
-WORKDIR /app
+FROM microsoft/aspnetcore-build:2.0
 
-# copy csproj and restore as distinct layers
-COPY ./Planets.Api/*.csproj ./
-RUN dotnet restore
+WORKDIR /api
 
-# copy and build everything else
-COPY . ./
-RUN dotnet publish -c Release -o out
-ENTRYPOINT ["dotnet", "/app/Planets.Api/out/Planets.Api.dll"]
+COPY . .
+
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["dotnet restore Planets.Api.sln && cd src/Planets.Api && dotnet run"]

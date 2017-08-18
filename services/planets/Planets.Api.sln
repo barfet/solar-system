@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Api", "Planets.Api\Planets.Api.csproj", "{403D400E-DAEE-48D5-9B5B-BC1D8FA7661E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Api", "src\Planets.Api\Planets.Api.csproj", "{403D400E-DAEE-48D5-9B5B-BC1D8FA7661E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
