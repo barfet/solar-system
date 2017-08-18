@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Amazon.Runtime;
+using Amazon;
+using Newtonsoft.Json;
+using Serilog;
+using Planets.Api.Services;
 
 namespace Planets.Api
 {
@@ -23,17 +23,36 @@ namespace Planets.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                var settings = options.SerializerSettings;
+                settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
+            // Pull in any SDK configuration from Configuration object
+            var awsOptions = Configuration.GetAWSOptions();
+
+            awsOptions.Credentials = new BasicAWSCredentials(Configuration.GetValue<string>("AWS_ACCESS_KEY_ID"),
+                    Configuration.GetValue<string>("AWS_SECRET_ACCESS_KEY"));
+
+            awsOptions.Region = RegionEndpoint.GetBySystemName(Configuration.GetValue<string>("AWS_REGION"));
+
+            services.AddDefaultAWSOptions(awsOptions);
+
+            // Add DynamoDB to the ASP.NET Core dependency injection framework.
+            services.AddAWSService<Amazon.DynamoDBv2.IAmazonDynamoDB>();
+
+            // Custom services
+            services.AddScoped<IDynamoDbService, DynamoDbService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            loggerFactory.AddDebug();
+            loggerFactory.AddSerilog();
 
+            app.UseExceptionHandler();
             app.UseMvc();
         }
     }

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>b1aa02e4-d332-42e7-80c2-2ff9710e83d5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,7 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.4.17" />
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

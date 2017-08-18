@@ -23,6 +23,10 @@ services:
         - no_proxy
     image: planets
     container_name: planets
+    volumes:
+      - ./services/planets:/api
+    env_file:
+      - ./.env.dev
     expose:
       - "3000"
     environment:
