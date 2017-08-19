@@ -11,8 +11,8 @@ namespace Planets.Api.Services
 {
     public interface IDynamoDbService
     {
-        Task<string> GetItemAsync(string key, string tableName);
-        Task<JToken> GetAllItemsAsync(string tableName);
+        Task<JToken> GetItemAsync(string key, string tableName);
+        Task<JToken> GetAllItemsAsync(string tableName, List<string> attributesToGet = null);
     }
 
     public class DynamoDbService : IDynamoDbService
@@ -26,7 +26,7 @@ namespace Planets.Api.Services
             _logger = logger;
         }
 
-        public async Task<string> GetItemAsync(string key, string tableName)
+        public async Task<JToken> GetItemAsync(string key, string tableName)
         {
             var table = Table.LoadTable(AmazonDynamoDbClient, tableName);
 
@@ -35,7 +35,7 @@ namespace Planets.Api.Services
                 var item = await table.GetItemAsync(key);
                 var jsonText = item?.ToJsonPretty();
 
-                return jsonText;
+                return JObject.Parse(jsonText);
             }
             catch (AmazonDynamoDBException ex)
             {
@@ -45,11 +45,22 @@ namespace Planets.Api.Services
 
         }
 
-        public async Task<JToken> GetAllItemsAsync(string tableName)
+        public async Task<JToken> GetAllItemsAsync(string tableName, List<string> attributesToGet = null)
         {
+            var scanRequest = new ScanRequest
+            {
+                TableName = tableName
+            };
+
+            if (attributesToGet != null)
+            {
+                scanRequest.AttributesToGet = attributesToGet;
+            }
+
             try
             {
-                var response = await AmazonDynamoDbClient.ScanAsync(new ScanRequest { TableName = tableName });
+                var response = await AmazonDynamoDbClient.ScanAsync(scanRequest);
+
                 return ToJsonResponse(response.Items);
             }
             catch (AmazonDynamoDBException ex)

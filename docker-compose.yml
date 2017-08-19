@@ -8,9 +8,9 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
-      - DEFAULT_HOST=planets.borysenok.com
+      - DEFAULT_HOST=planets.solar.system
     networks:
       - dev
 
@@ -30,7 +30,7 @@ services:
     expose:
       - "3000"
     environment:
-      - VIRTUAL_HOST=planets.borysenok.com
+      - VIRTUAL_HOST=planets.solar.system
       - VIRTUAL_PORT=3000
       - SLS_DEBUG=true
       - http_proxy
