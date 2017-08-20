@@ -10,9 +10,33 @@ services:
     ports:
       - "80:80"
     environment:
-      - DEFAULT_HOST=planets.solar.system
+      - DEFAULT_HOST=home.solar.system
     networks:
       - dev
+
+  home:
+    build:
+      context: ./apps/home/.
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: home
+    container_name: home
+    volumes:
+      - ./apps/home:/usr/src/app
+    expose:
+      - "3000"
+    environment:
+      - VIRTUAL_HOST=home.solar.system
+      - VIRTUAL_PORT=3000
+      - http_proxy
+      - https_proxy
+      - no_proxy
+    env_file:
+      - ./.env.dev
+    networks:
+      - dev    
 
   planets:
     build:
