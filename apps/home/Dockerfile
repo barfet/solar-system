@@ -15,4 +15,4 @@ COPY . /usr/src/app
 EXPOSE 3000
 
 ENTRYPOINT ["/bin/sh", "-c"]
-CMD ["yarn install && npm run server:dev:hmr"]
+CMD ["yarn install && npm start:hmr"]
