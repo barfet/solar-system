@@ -8,7 +8,7 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || '0.0.0.0';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const EXTERNAL_HOST = process.env.EXTERNAL_HOST || HOST;
 const EXTERNAL_PORT = process.env.EXTERNAL_PORT || PORT;
 const HMR = helpers.hasProcessFlag('hot');
