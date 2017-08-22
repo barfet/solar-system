@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Actions, Effect } from '@ngrx/effects';
 import * as planetsActions from './actions';
-import { AuthedHttp } from '@ipreo/northstar';
 import { APP_CONFIG, AppConfig } from '../../app-config.module';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
