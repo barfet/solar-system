@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 
 @Injectable()
-export class FeaturesEffects {
+export class PlanetsEffects {
 
     @Effect() public loadPlanets$ =
     this.actions$
