@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 # Bundle app source
 COPY . /usr/src/app
 
-EXPOSE 3000
+EXPOSE 5000
 
 ENTRYPOINT ["/bin/sh", "-c"]
-CMD ["yarn install && npm start:hmr"]
+CMD ["yarn install --no-bin-links && npm run server:dev:hmr"]
