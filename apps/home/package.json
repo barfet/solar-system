@@ -88,13 +88,13 @@
     "ie-shim": "^0.1.0",
     "reflect-metadata": "^0.1.10",
     "rxjs": "~5.0.2",
-    "zone.js": "0.8.14"
+    "zone.js": "^0.8.10"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~4.3.1",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "2.5.45",
-    "@types/node": "^7.0.39",
+    "@types/node": "^7.0.0",
     "@types/source-map": "^0.5.0",
     "@types/uglify-js": "^2.6.28",
     "@types/webpack": "^2.2.16",
@@ -141,18 +141,18 @@
     "string-replace-loader": "~1.2.0",
     "style-loader": "^0.18.1",
     "to-string-loader": "^1.1.5",
-    "ts-node": "^3.3.0",
-    "tslib": "^1.7.1",
-    "tslint": "~4.5.1",
-    "tslint-loader": "^3.5.2",
-    "typedoc": "^0.7.1",
-    "typescript": "~2.2.2",
+    "ts-node": "^2.0.0",
+    "tslib": "^1.5.0",
+    "tslint": "~4.4.2",
+    "tslint-loader": "^3.3.0",
+    "typedoc": "^0.5.3",
+    "typescript": "2.4.0",
     "url-loader": "^0.5.8",
     "webpack": "~2.6.1",
-    "webpack-dev-middleware": "^1.10.1",
-    "webpack-dev-server": "~2.4.2",
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-dev-server": "2.3.0",
     "webpack-dll-bundles-plugin": "^1.0.0-beta.5",
-    "webpack-merge": "~4.1.0"
+    "webpack-merge": "~2.6.1"
   },
   "repository": {
     "type": "git",
