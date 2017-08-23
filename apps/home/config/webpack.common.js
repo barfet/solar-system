@@ -13,6 +13,7 @@ const helpers = require('./helpers');
 const AssetsPlugin = require('assets-webpack-plugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
@@ -211,19 +212,11 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
-      // Use for DLLs
-      // new AssetsPlugin({
-      //   path: helpers.root('dist'),
-      //   filename: 'webpack-assets.json',
-      //   prettyPrint: true
-      // }),
-
-      /**
-       * Plugin: ForkCheckerPlugin
-       * Description: Do type checking in a separate process, so webpack doesn't need to wait.
-       *
-       * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
-       */
+      new DefinePlugin({
+        'process.env': {
+          'PLANETS_API_BASE_URL': JSON.stringify(process.env.PLANETS_API_BASE_URL)
+        }
+      }),
       new CheckerPlugin(),
       /**
        * Plugin: CommonsChunkPlugin

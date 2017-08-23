@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Planets.Api.Services;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Cors;
+using Newtonsoft.Json.Linq;
 
 namespace Planets.Api.Controllers
 {
+    [EnableCors("AnyCorsPolicy")]
     [Route("api/[controller]")]
     public class PlanetsController : Controller
     {
@@ -35,7 +36,9 @@ namespace Planets.Api.Controllers
         public async Task<IActionResult> Get()
         {
             var planets = await _dynamoDbService.GetAllItemsAsync(_planetsTableName, InitialLoad);
-            return Ok(planets);
+            var result = new JObject { { "solarSystemPlanets", planets } };
+
+            return Ok(result);
         }
 
         // GET api/solarsystem/5

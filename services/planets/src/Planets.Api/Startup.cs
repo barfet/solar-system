@@ -8,6 +8,7 @@ using Amazon;
 using Newtonsoft.Json;
 using Serilog;
 using Planets.Api.Services;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace Planets.Api
 {
@@ -27,6 +28,16 @@ namespace Planets.Api
             {
                 var settings = options.SerializerSettings;
                 settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AnyCorsPolicy", corsBuilder.Build());
             });
 
             // Pull in any SDK configuration from Configuration object
