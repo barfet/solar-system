@@ -17,7 +17,7 @@ export class PlanetsEffects {
         .ofType(planetsActions.PLANETS_FETCH)
         .switchMap((action) =>
             this.http
-                .get(`http://planets.solar.system/api/planets`)
+                .get(`${this.config.planetsApiUrl}/api/planets`)
                 .map((res) => new planetsActions.PlanetsFetchSuccessAction(res.json()))
                 .catch((e) => Observable.of(new planetsActions.PlanetsFetchErrorAction(e.toString())))
         );
