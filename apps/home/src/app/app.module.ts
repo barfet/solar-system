@@ -2,11 +2,13 @@ import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } fro
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PlanetsList, AppHeaderComponent } from './components/index';
 
 import { AppConfigModule } from './app-config.module';
+import { ExpandableListModule } from 'angular2-expandable-list';
 import { reducers, reducerFactory, State, getPlanetsState } from './state/reducer';
 import { PlanetsEffects } from './state/planets/effects';
 import * as ngrxStore from '@ngrx/store';
@@ -40,6 +42,8 @@ export function initConfiguration(store: ngrxStore.Store<State>): Function {
   imports: [
     BrowserModule,
     HttpModule,
+    BrowserAnimationsModule,
+    ExpandableListModule,
     FormsModule,
     AppConfigModule,
     ngrxStore.StoreModule.forRoot(reducers, { reducerFactory }),

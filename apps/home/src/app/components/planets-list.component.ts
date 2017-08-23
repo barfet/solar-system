@@ -12,7 +12,13 @@ import { SimplePlanetInfo } from '.././types'
 @Component({
     selector: 'planets-list',
     template: `
-        <div *ngFor="let planet of planets">{{ planet.name }}</div>
+        <expandable-list *ngFor="let planet of planets">
+            <expandable-list-item>
+                <span title>{{ planet.name }}</span>
+                <a item href="http://www.goo.gl">Google</a>
+                <a item href="http://www.goo.gl">Google</a>
+            </expandable-list-item>
+        </expandable-list>
     `
 })
 
