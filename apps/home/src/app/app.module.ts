@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { PlanetsList } from './components/planets-list.component';
 import { AppConfigModule } from './app-config.module';
 import { reducers, reducerFactory, State, getPlanetsState } from './state/reducer';
 import { PlanetsEffects } from './state/planets/effects';
@@ -23,7 +24,8 @@ export function initConfiguration(store: ngrxStore.Store<State>): Function {
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
-    AppComponent
+    AppComponent,
+    PlanetsList
   ],
   providers: [
     {

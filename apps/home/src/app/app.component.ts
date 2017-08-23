@@ -1,31 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
-import { Http } from '@angular/http';
-
-import { Store } from '@ngrx/store';
-
-import { Observable } from 'rxjs/Observable';
-
-import { State, getPlanetsState } from './state/reducer';
-import { SimplePlanetInfo } from './types'
-
-import '../styles/app.scss';
 
 @Component({
-  selector: 'app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app',
+    template: `
+        <app-header></app-header>
+        <main class="c-wrapper">
+            <div class="app-body">
+                <planets-list></planets-list>
+            </div>
+        </main>
+    `
 })
 export class AppComponent implements OnInit {
-  
-  private planets: SimplePlanetInfo[];
 
-  constructor(private store: Store<State>, public http: Http) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.store.subscribe((state: State) => {
-            this.planets = getPlanetsState(state).planets;
-        });
   }
 }
