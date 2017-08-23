@@ -1,4 +1,4 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -11,9 +11,28 @@ import * as ngrxStore from '@ngrx/store';
 import * as ngrxEffects from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { PlanetsFetchAction } from './state/planets/actions';
 
+const PlanetsApiUrl = process.env.PLANETS_API_BASE_URL;
+
+export function initConfiguration(store: ngrxStore.Store<State>): Function {
+  return () =>  store.dispatch(new PlanetsFetchAction());
+}
 
 @NgModule({
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [
+    AppComponent
+  ],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initConfiguration,
+      deps: [ngrxStore.Store],
+      multi: true
+    }
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -23,9 +42,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ngrxEffects.EffectsModule.forRoot([
       PlanetsEffects
     ])
-  ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  ]
 })
 
 export class AppModule {
