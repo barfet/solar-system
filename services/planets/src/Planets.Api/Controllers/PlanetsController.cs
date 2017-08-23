@@ -17,8 +17,6 @@ namespace Planets.Api.Controllers
         private readonly IDynamoDbService _dynamoDbService;
         private readonly string _planetsTableName;
 
-        private static readonly List<string> InitialLoad = new List<string> {"position", "name"};
-
         public IConfiguration Configuration { get; }
 
         public PlanetsController(ILogger<PlanetsController> logger, IDynamoDbService dynamoDbService,
@@ -35,7 +33,7 @@ namespace Planets.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var planets = await _dynamoDbService.GetAllItemsAsync(_planetsTableName, InitialLoad);
+            var planets = await _dynamoDbService.GetAllItemsAsync(_planetsTableName);
             var result = new JObject { { "solarSystemPlanets", planets } };
 
             return Ok(result);

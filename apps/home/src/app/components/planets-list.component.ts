@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { State, getPlanetsState } from '.././state/reducer';
-import { SimplePlanetInfo } from '.././types'
+import { PlanetInfo } from '.././types'
 
 @Component({
     selector: 'planets-list',
@@ -15,16 +15,19 @@ import { SimplePlanetInfo } from '.././types'
         <expandable-list *ngFor="let planet of planets">
             <expandable-list-item>
                 <span title>{{ planet.name }}</span>
-                <a item href="http://www.goo.gl">Google</a>
-                <a item href="http://www.goo.gl">Google</a>
+                <a item>Mass: {{ planet.mass }}</a>
+                <a item>Diameter: {{ planet.diameter }}</a>
+                <a item>Distance: {{ planet.distance }}</a>
+                <a item>Position: {{ planet.position }}</a>
+                
             </expandable-list-item>
         </expandable-list>
     `
 })
-
+//<img item src="{{planet.image}}" />
 export class PlanetsList implements OnInit {
 
-    private planets: SimplePlanetInfo[];
+    private planets: PlanetInfo[];
 
     constructor(private store: Store<State>, private http: Http) {
 

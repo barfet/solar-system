@@ -1,9 +1,9 @@
-import { SimplePlanetInfo } from '../../types';
+import { PlanetInfo } from '../../types';
 
 export interface PlanetsState {
-    planets: SimplePlanetInfo[];
+    planets: PlanetInfo[];
 }
 
 export interface PlanetsStateResponse {
-    solarSystemPlanets: SimplePlanetInfo[];
+    solarSystemPlanets: PlanetInfo[];
 }
