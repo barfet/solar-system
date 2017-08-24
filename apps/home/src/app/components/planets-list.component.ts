@@ -10,22 +10,41 @@ import { PlanetInfo } from '.././types'
 @Component({
     selector: 'planets-list',
     template: `
-        <expandable-list *ngFor="let planet of planets">
-            <expandable-list-item>
-                <span title>{{ planet.name }}</span>
-                <a item>Mass: {{ planet.mass }}</a>
-                <a item>Diameter: {{ planet.diameter }}</a>
-                <a item>Distance: {{ planet.distance }}</a>
-                <a item>Position: {{ planet.position }}</a>
-                
-            </expandable-list-item>
-        </expandable-list>
-    `
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <expandable-list *ngFor="let planet of planets">
+                        <expandable-list-item (click)="onItemClick(planet.image)" [isExpanded]="planet.isExpanded">
+                            <span title>{{ planet.name }}</span>
+                            <a item>Mass: {{ planet.mass }}</a>
+                            <a item>Diameter: {{ planet.diameter }}</a>
+                            <a item>Distance: {{ planet.distance }}</a>
+                            <a item>Position: {{ planet.position }}</a>
+                        </expandable-list-item>
+                    </expandable-list>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{planetImage}}" />
+                </div>
+            </div>
+        </div>
+    `,
+    styles: [`
+        .expandable-list * {
+            background: black;
+            color: gray;
+        }
+
+        .expandable-list .expandable-list-item * {
+            color: gray;
+        }
+    `]
 })
-//<img item src="{{planet.image}}" />
+
 export class PlanetsList implements OnInit {
 
     private planets: PlanetInfo[];
+    private planetImage: string;
 
     constructor(private store: Store<State>) {
 
@@ -34,6 +53,16 @@ export class PlanetsList implements OnInit {
     ngOnInit() {
         this.store.subscribe((state: State) => {
             this.planets = getPlanetsState(state).planets;
+            this.planets.forEach(planet => planet.isExpanded = false);
         });
+     }
+
+     onItemClick(planet: PlanetInfo){
+        if(planet.isExpanded){
+            this.planetImage = planet.image;
+        } else {
+            this.planetImage = "";
+        }
+        
      }
 }
