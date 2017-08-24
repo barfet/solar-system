@@ -14,12 +14,14 @@ import { PlanetInfo } from '.././types'
             <div class="row">
                 <div class="col-md-6">
                     <expandable-list *ngFor="let planet of planets">
-                        <expandable-list-item (click)="onItemClick(planet.image)" [isExpanded]="planet.isExpanded">
+                        <expandable-list-item (click)="onItemClick(planet)" [isExpanded]="planet.isExpanded">
                             <span title>{{ planet.name }}</span>
-                            <a item>Mass: {{ planet.mass }}</a>
-                            <a item>Diameter: {{ planet.diameter }}</a>
-                            <a item>Distance: {{ planet.distance }}</a>
-                            <a item>Position: {{ planet.position }}</a>
+                            <a item>{{ planet.description }}</a>
+                            <hr item/>
+                            <a item>Position to the Sun - {{ planet.position }}</a>
+                            <a item>Mass is approximately {{ planet.mass }} trillion metric tons </a>
+                            <a item>Average diameter - {{ planet.diameter }} km </a>
+                            <a item>Average Distance to the Sun - {{ planet.distance }} million km </a>
                         </expandable-list-item>
                     </expandable-list>
                 </div>
@@ -52,17 +54,30 @@ export class PlanetsList implements OnInit {
 
     ngOnInit() {
         this.store.subscribe((state: State) => {
-            this.planets = getPlanetsState(state).planets;
+            this.planets = getPlanetsState(state).planets
+                .sort((p1, p2) => p1.position - p2.position);
             this.planets.forEach(planet => planet.isExpanded = false);
         });
      }
 
      onItemClick(planet: PlanetInfo){
-        if(planet.isExpanded){
+        planet.isExpanded = !planet.isExpanded;
+
+        this.togglePlanets(planet);
+
+        if (planet.isExpanded){
             this.planetImage = planet.image;
         } else {
             this.planetImage = "";
         }
         
+     }
+
+     private togglePlanets(planet: PlanetInfo){
+        this.planets.forEach(p => {
+            if (p.position != planet.position && p.isExpanded){
+                p.isExpanded = false;
+            }
+        });
      }
 }
