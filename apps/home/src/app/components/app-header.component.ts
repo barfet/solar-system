@@ -3,12 +3,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'app-header',
     template: `
-        <div id="sun-image">
-            <img src="https://s3.amazonaws.com/planets-images/sun.jpg" alt="Sun image" />
-        <div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="https://s3.amazonaws.com/planets-images/sun.jpg" alt="Sun image" />
+                </div>
+            </div>
+        </div>
     `,
     styles: [`
-        #sun-image { 
+        img {
             width: 100%;
         }
     `]
