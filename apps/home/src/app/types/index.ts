@@ -1,8 +1,9 @@
 export interface PlanetInfo {
-    position: string;
+    position: number;
     name: string;
     image: string;
     diameter: string;
     distance: string;
     mass: string;
+    isExpanded: boolean;
 }
