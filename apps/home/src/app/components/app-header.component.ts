@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
         <div class="container-fluid header">
             <div class="row">
                 <div class="col-md-12">
-                    <img src="https://s3.amazonaws.com/planets-images/sun.jpg" />
+                    <img src="../../assets/img/Sun.jpg" />
                 </div>
             </div>
         </div>

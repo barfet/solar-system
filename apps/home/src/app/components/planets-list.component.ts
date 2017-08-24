@@ -66,7 +66,7 @@ export class PlanetsList implements OnInit {
         this.togglePlanets(planet);
 
         if (planet.isExpanded){
-            this.planetImage = planet.image;
+            this.planetImage = `../../assets/img/${planet.name}.jpg`;
         } else {
             this.planetImage = "";
         }
