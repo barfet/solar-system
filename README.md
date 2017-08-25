@@ -1,4 +1,4 @@
-# solar-system# Solar System
+## Solar System
 Containerized application for displaying planets in Solar System.
 
 ## Overview
