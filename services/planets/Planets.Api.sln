@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Api", "src\Planets.Api\Planets.Api.csproj", "{403D400E-DAEE-48D5-9B5B-BC1D8FA7661E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28B2F92D-0F3F-46E7-866A-026785EEB147}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planets.Api", "src\Planets.Api\Planets.Api.csproj", "{403D400E-DAEE-48D5-9B5B-BC1D8FA7661E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EC1B4BC6-6F6F-4C76-98BF-FE687765D7EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planets.Api.UnitTest", "test\Planets.Api.UnitTest\Planets.Api.UnitTest.csproj", "{E2F4DB2E-6534-4401-A5AB-17378BFB5AD9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planets.Api.IntegrationTest", "test\Planets.Api.IntegrationTest\Planets.Api.IntegrationTest.csproj", "{98116736-3C4D-44F7-8737-B234C38981B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planets.Api.Test.Common", "test\Planets.Api.Test.Common\Planets.Api.Test.Common.csproj", "{BADD1ED6-ACDC-4BA7-8E87-1CFCB0673A3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,27 @@ Global
 		{403D400E-DAEE-48D5-9B5B-BC1D8FA7661E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{403D400E-DAEE-48D5-9B5B-BC1D8FA7661E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{403D400E-DAEE-48D5-9B5B-BC1D8FA7661E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2F4DB2E-6534-4401-A5AB-17378BFB5AD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2F4DB2E-6534-4401-A5AB-17378BFB5AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2F4DB2E-6534-4401-A5AB-17378BFB5AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2F4DB2E-6534-4401-A5AB-17378BFB5AD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98116736-3C4D-44F7-8737-B234C38981B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98116736-3C4D-44F7-8737-B234C38981B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98116736-3C4D-44F7-8737-B234C38981B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98116736-3C4D-44F7-8737-B234C38981B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BADD1ED6-ACDC-4BA7-8E87-1CFCB0673A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BADD1ED6-ACDC-4BA7-8E87-1CFCB0673A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BADD1ED6-ACDC-4BA7-8E87-1CFCB0673A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BADD1ED6-ACDC-4BA7-8E87-1CFCB0673A3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{403D400E-DAEE-48D5-9B5B-BC1D8FA7661E} = {28B2F92D-0F3F-46E7-866A-026785EEB147}
+		{E2F4DB2E-6534-4401-A5AB-17378BFB5AD9} = {EC1B4BC6-6F6F-4C76-98BF-FE687765D7EF}
+		{98116736-3C4D-44F7-8737-B234C38981B2} = {EC1B4BC6-6F6F-4C76-98BF-FE687765D7EF}
+		{BADD1ED6-ACDC-4BA7-8E87-1CFCB0673A3F} = {EC1B4BC6-6F6F-4C76-98BF-FE687765D7EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A2C8196-CD4A-4AB0-9D35-00336F34B2DA}
