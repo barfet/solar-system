@@ -34,6 +34,6 @@ This project depends on several environment variables, that is injecting by dock
 * Enable drive sharing in Docker (Settings -> Shared Drives)
 * Add project DNS names to the `C:\Windows\System32\drivers\etc\hosts` for Nginx proxying on localhost
 `127.0.0.1 planets.solar.system home.solar.system`
-* Disable IIS to relaease port `80` for Nginx
+* Disable IIS to relaease the port `80` for Nginx
 * cd to the project root `/solar-system` and execute in `CMD` `dc up` to run the whole infrastructure inside of Docker.
 * Wait for the compilation to be completed and navigate to `home.solar.system` in favorite browser
