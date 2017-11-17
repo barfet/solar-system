@@ -4,7 +4,7 @@ services:
 
   nginx:
     image: jwilder/nginx-proxy:0.6.0
-    container_name: northstar-nginx-proxy
+    container_name: nginx-proxy
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
     ports:
@@ -55,6 +55,31 @@ services:
       - "3000"
     environment:
       - VIRTUAL_HOST=planets.solar.system
+      - VIRTUAL_PORT=3000
+      - SLS_DEBUG=true
+      - http_proxy
+      - https_proxy
+      - no_proxy
+    networks:
+      - dev
+
+  logging:
+    build:
+      context: ./services/logging/.
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: logging
+    container_name: logging
+    volumes:
+      - ./services/logging:/api
+    env_file:
+      - ./.env.dev
+    expose:
+      - "3000"
+    environment:
+      - VIRTUAL_HOST=logging.solar.system
       - VIRTUAL_PORT=3000
       - SLS_DEBUG=true
       - http_proxy
